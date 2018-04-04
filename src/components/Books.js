@@ -12,13 +12,14 @@ class Books extends Component {
     return (
         <div>
           <ol className="books-grid">
-          {books.map(({authors, imageLinks, title}) => (
+          {books.map(({authors, imageLinks, title, shelf}) => (
                 <li>
                   {console.log('title', { title })}
+                  {console.log('shelf', { shelf })}
                   <div className="book">
                     <div className="book-top">
                       <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${ imageLinks.thumbnail })` }}></div>
-                      <Selector />
+                      <Selector shelf={shelf}/>
                     </div>
                       <div className="book-title">{ title }</div>
                         { authors.map(({ author }) => (

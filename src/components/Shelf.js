@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import '../App.css'
-import Selector from './Selector.js'
 import Books from './Books.js'
 
 class Shelf extends Component {
