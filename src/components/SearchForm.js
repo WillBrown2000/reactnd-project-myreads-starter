@@ -26,6 +26,8 @@ class SearchForm extends Component {
 
     api.search(_query).then( (searchBooks) => {
 
+      let newBookList = []
+
       console.log('_query',_query)
 
       if (_query === '') {
@@ -42,28 +44,6 @@ class SearchForm extends Component {
 
       }
 
-      this.setState({
-
-        books: searchBooks
-
-      })
-
-    })
-
-
-
-
-
-
-
-
-
-    // api.search(event.target.value).then( (searchBooks) => {
-    //
-    //   let newBookList = []
-    //
-    //   if (searchBooks === undefined || searchBooks.error) return newBookList
-    //
       api.getAll().then( (userBooks) => {
 
         searchBooks.forEach( (searchBook) => {
@@ -90,17 +70,67 @@ class SearchForm extends Component {
 
         })
 
+        this.setState({
+
+          books: newBookList
+
+        })
+
       })
 
-      this.setState({
+    })
 
-        books: newBookList,
 
-      })
 
-      console.log('this.state.books', this.state.books)
-      console.log('newBookList', newBookList)
-      return newBookList
+
+
+
+
+
+
+    // api.search(event.target.value).then( (searchBooks) => {
+    //
+    //   let newBookList = []
+    //
+    //   if (searchBooks === undefined || searchBooks.error) return newBookList
+    //
+      // api.getAll().then( (userBooks) => {
+      //
+      //   searchBooks.forEach( (searchBook) => {
+      //
+      //     let bookToAdd = {}
+      //
+      //     userBooks.forEach( (userBook) => {
+      //
+      //       if (userBook['id'] === searchBook['id']) {
+      //
+      //         bookToAdd = Object.assign({}, userBook)
+      //
+      //         }
+      //
+      //     })
+      //
+      //         if (bookToAdd.id === undefined) {
+      //
+      //         bookToAdd = Object.assign(searchBook, {'shelf':'none'})
+      //
+      //         }
+      //
+      //         newBookList.push(bookToAdd)
+      //
+      //   })
+      //
+      // })
+      //
+      // this.setState({
+      //
+      //   books: newBookList,
+      //
+      // })
+      //
+      // console.log('this.state.books', this.state.books)
+      // console.log('newBookList', newBookList)
+      // return newBookList
     //
     // })
 
