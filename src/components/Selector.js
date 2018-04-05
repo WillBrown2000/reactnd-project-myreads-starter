@@ -31,9 +31,9 @@ class Selector extends Component {
       <div className="book-shelf-changer">
         <select>
           <option value="none" disabled>Move to...</option>
-          {bookLocations.map(({value, text}) =>
+          {bookLocations.map(({value, text}, j) =>
             (
-              <option value={value} selected={ value === currentValue }>{text}</option>
+              <option key={j} value={value} selected={ value === currentValue }>{text}</option>
             )
           )}
         </select>

@@ -11,9 +11,9 @@ class MyReads extends Component {
 
   state = {
 
-    currentlyReadingBooks : {'books' :[] },
-    wantToReadBooks : {'books' :[] },
-    readBooks : {'books' :[] },
+    currentlyReadingBooks : [] ,
+    wantToReadBooks : [] ,
+    readBooks : [] ,
     loading: true
 
   }
@@ -29,17 +29,14 @@ class MyReads extends Component {
     api.getAll().then(
       (books) => {
 
-        console.log('api results', books)
-        let _currentlyReadingBooks = books.filter( (book) =>  book.shelf == 'currentlyReading' )
-        let _wantToReadBooks = books.filter( (book) =>  book.shelf == 'wantToRead' )
-        let _readBooks = books.filter( (book) =>  book.shelf == 'read' )
-        console.log('_CR', _currentlyReadingBooks)
-        console.log('_WR', _wantToReadBooks)
-        console.log('_R', _readBooks)
+        let _currentlyReadingBooks = books.filter( (book) =>  book.shelf === 'currentlyReading' )
+        let _wantToReadBooks = books.filter( (book) =>  book.shelf === 'wantToRead' )
+        let _readBooks = books.filter( (book) =>  book.shelf === 'read' )
+
         this.setState({
-          currentlyReadingBooks : {'books' : _currentlyReadingBooks},
-          wantToReadBooks : {'books' : _wantToReadBooks},
-          readBooks : {'books' : _readBooks},
+          currentlyReadingBooks : _currentlyReadingBooks,
+          wantToReadBooks : _wantToReadBooks,
+          readBooks : _readBooks,
           loading : false
         })
       }
@@ -48,7 +45,7 @@ class MyReads extends Component {
 
   render() {
     console.log('loading', this.state.loading)
-    console.log('currently reading 51', this.state.currentlyReadingBooks)
+    console.log('currently reading', this.state.currentlyReadingBooks)
     return (
       <div className="list-books">
         <div className="list-books-title">
@@ -59,9 +56,12 @@ class MyReads extends Component {
             (<div><Shelf books={ this.state.currentlyReadingBooks } title="Currently Reading" />
             <Shelf books={ this.state.wantToReadBooks } title="Want To Read" />
             <Shelf books={ this.state.readBooks } title="Read" /></div>)
-        }
+          }
         <div className="open-search">
-          <Link to='/search'>Add a book</Link>
+          <Link to={{
+                  pathname:'/search'
+                  }}
+          >Add a book</Link>
         </div>
       </div>
     )
