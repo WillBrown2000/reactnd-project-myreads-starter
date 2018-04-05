@@ -1,7 +1,18 @@
 import React, { Component } from 'react';
 import '../App.css'
+import * as api from '../BooksAPI.js'
 
 class Selector extends Component {
+
+  handleChange = (event) => {
+
+    api.update(this.props.book, event.target.value).then( (results) => {
+
+      this.props.updateState()
+
+    })
+
+  }
 
   render () {
 
@@ -11,7 +22,7 @@ class Selector extends Component {
         "text":"None"
       },
       {
-        "value":"CurrentlyReading",
+        "value":"currentlyReading",
         "text":"Currently Reading"
       },
       {
@@ -23,13 +34,13 @@ class Selector extends Component {
         "text":"Read"
       },
     ]
-
+    
+    const book = this.props.book
     const currentValue = this.props.shelf || 'none'
-    console.log('currentValue', currentValue)
 
     return (
       <div className="book-shelf-changer">
-        <select>
+        <select onChange={this.handleChange}>
           <option value="none" disabled>Move to...</option>
           {bookLocations.map(({value, text}, j) =>
             (

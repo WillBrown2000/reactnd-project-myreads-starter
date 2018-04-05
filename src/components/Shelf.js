@@ -6,11 +6,13 @@ class Shelf extends Component {
 
   render () {
 
-    const { books } = this.props
-    const { title } = this.props //added to allow addition of shelfs in a user wants.
+    const {title, books } = this.props
+    const updateState = this.props.updateMyReads
+
 
     console.log('books', books)
     console.log('shelf name', title)
+    console.log('from my reads updateMyReads', updateState)
 
     return (
       <div>
@@ -19,8 +21,8 @@ class Shelf extends Component {
             <h2 className="bookshelf-title">{ title }</h2>
             <div className="bookshelf-books">
               <ol className="books-grid">
-              {books.map(({authors, imageLinks, title, shelf}) => (
-                    <Book authors={authors} imageLinks={imageLinks} title={title} shelf={shelf} />
+              {books.map(({authors, imageLinks, title, shelf, id}) => (
+                    <Book authors={authors} id={id}imageLinks={imageLinks} title={title} shelf={shelf} updateState={updateState} />
                   )
                 )}
               </ol>

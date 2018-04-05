@@ -80,69 +80,9 @@ class SearchForm extends Component {
 
     })
 
-
-
-
-
-
-
-
-
-    // api.search(event.target.value).then( (searchBooks) => {
-    //
-    //   let newBookList = []
-    //
-    //   if (searchBooks === undefined || searchBooks.error) return newBookList
-    //
-      // api.getAll().then( (userBooks) => {
-      //
-      //   searchBooks.forEach( (searchBook) => {
-      //
-      //     let bookToAdd = {}
-      //
-      //     userBooks.forEach( (userBook) => {
-      //
-      //       if (userBook['id'] === searchBook['id']) {
-      //
-      //         bookToAdd = Object.assign({}, userBook)
-      //
-      //         }
-      //
-      //     })
-      //
-      //         if (bookToAdd.id === undefined) {
-      //
-      //         bookToAdd = Object.assign(searchBook, {'shelf':'none'})
-      //
-      //         }
-      //
-      //         newBookList.push(bookToAdd)
-      //
-      //   })
-      //
-      // })
-      //
-      // this.setState({
-      //
-      //   books: newBookList,
-      //
-      // })
-      //
-      // console.log('this.state.books', this.state.books)
-      // console.log('newBookList', newBookList)
-      // return newBookList
-    //
-    // })
-
   }
 
   render() {
-
-    console.log('books being rendered', this.state.books)
-    console.log('books.length: ', this.state.books.length)
-    console.log('query', this.state.query)
-
-
 
     return (
       <div className="search-books">
@@ -157,8 +97,8 @@ class SearchForm extends Component {
             <div>
               <ol className="books-grid">
               {(this.state.books.length > 0) ?
-                (this.state.books.map(({authors, imageLinks, title, shelf}, j) => (
-                  <Book key={j} authors={authors} imageLinks={imageLinks} title={title} shelf={shelf} />))):
+                (this.state.books.map(({authors, imageLinks, title, shelf, id}, j) => (
+                  <Book key={j} authors={authors} imageLinks={imageLinks} title={title} shelf={shelf} id={id} />))):
                 (<div>"These aren't the books your looking for.  Try a different search!"</div>)
               }
               </ol>

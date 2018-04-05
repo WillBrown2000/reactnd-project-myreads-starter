@@ -39,6 +39,8 @@ class MyReads extends Component {
           readBooks : _readBooks,
           loading : false
         })
+
+        console.log('updated all shelf values')
       }
     )
   }
@@ -53,9 +55,9 @@ class MyReads extends Component {
         </div>
         { this.state.loading ?
             (<div>Loading...</div>) :
-            (<div><Shelf books={ this.state.currentlyReadingBooks } title="Currently Reading" />
-            <Shelf books={ this.state.wantToReadBooks } title="Want To Read" />
-            <Shelf books={ this.state.readBooks } title="Read" /></div>)
+            (<div><Shelf books={ this.state.currentlyReadingBooks } title="Currently Reading" updateMyReads={this.updateShelfValues} />
+            <Shelf books={ this.state.wantToReadBooks } title="Want To Read" updateMyReads={this.updateShelfValues} />
+            <Shelf books={ this.state.readBooks } title="Read" updateMyReads={this.updateShelfValues} /></div>)
           }
         <div className="open-search">
           <Link to={{
