@@ -11,7 +11,9 @@ class Selector extends Component {
       // there's not a need to update the SearchForm state, hence this conditionally checks to see if
       // the updateState() method is present from MyReads.js, which does need to re-render
 
-      if(this.props.updateState) this.props.updateState()
+      if (this.props.updateState) this.props.updateState()
+
+      this.forceUpdate()
 
     })
 
@@ -21,33 +23,32 @@ class Selector extends Component {
 
     const bookLocations = [
       {
-        "value":"none",
+        "shelfValue":"none",
         "text":"None"
       },
       {
-        "value":"currentlyReading",
+        "shelfValue":"currentlyReading",
         "text":"Currently Reading"
       },
       {
-        "value":"wantToRead",
+        "shelfValue":"wantToRead",
         "text":"Want to Read"
       },
       {
-        "value":"read",
+        "shelfValue":"read",
         "text":"Read"
       },
     ]
 
-    const book = this.props.book
     const currentValue = this.props.shelf || 'none'
 
     return (
       <div className="book-shelf-changer">
-        <select defaultValue={currentValue} onChange={this.handleChange}>
+        <select value={currentValue} onChange={this.handleChange}>
           <option value="none" disabled>Move to...</option>
-          {bookLocations.map(({value, text}, j) =>
+          {bookLocations.map(({shelfValue, text}, j) =>
             (
-              <option key={j} value={value}>{text}</option>
+              <option key={j} value={shelfValue}>{text}</option>
             )
           )}
         </select>
