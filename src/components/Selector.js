@@ -8,6 +8,9 @@ class Selector extends Component {
 
     api.update(this.props.book, event.target.value).then( (results) => {
 
+      // there's not a need to update the SearchForm state, hence this conditionally checks to see if
+      // the updateState() method is present from MyReads.js, which does need to re-render
+
       if(this.props.updateState) this.props.updateState()
 
     })
