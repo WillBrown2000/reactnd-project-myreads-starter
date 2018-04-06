@@ -27,9 +27,7 @@ class SearchForm extends Component {
     api.search(_query).then( (searchBooks) => {
 
       let newBookList = []
-
-      console.log('_query',_query)
-
+      
       if (_query === '') {
 
         console.log('set books to []')
@@ -37,6 +35,18 @@ class SearchForm extends Component {
         this.setState({
 
         books: []
+
+        })
+
+        return false
+
+      }
+
+      if (searchBooks.error) {
+
+        this.setState({
+
+          books: newBookList
 
         })
 

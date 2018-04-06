@@ -8,7 +8,7 @@ class Selector extends Component {
 
     api.update(this.props.book, event.target.value).then( (results) => {
 
-      this.props.updateState()
+      if(this.props.updateState) this.props.updateState()
 
     })
 
@@ -34,17 +34,17 @@ class Selector extends Component {
         "text":"Read"
       },
     ]
-    
+
     const book = this.props.book
     const currentValue = this.props.shelf || 'none'
 
     return (
       <div className="book-shelf-changer">
-        <select onChange={this.handleChange}>
+        <select defaultValue={currentValue} onChange={this.handleChange}>
           <option value="none" disabled>Move to...</option>
           {bookLocations.map(({value, text}, j) =>
             (
-              <option key={j} value={value} selected={ value === currentValue }>{text}</option>
+              <option key={j} value={value}>{text}</option>
             )
           )}
         </select>
