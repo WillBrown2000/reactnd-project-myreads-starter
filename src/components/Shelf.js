@@ -1,14 +1,18 @@
 import React, { Component } from 'react';
 import '../App.css'
-import Selector from './Selector.js'
-import Books from './Books.js'
+import Book from './Book.js'
 
 class Shelf extends Component {
 
   render () {
 
-    const { books } = this.props.books
-    const { title } = this.props //added to allow addition of shelfs in a user wants.
+    const {title, books } = this.props
+    const updateState = this.props.updateMyReads
+
+
+    console.log('books', books)
+    console.log('shelf name', title)
+    console.log('from my reads updateMyReads', updateState)
 
     return (
       <div>
@@ -16,7 +20,12 @@ class Shelf extends Component {
           <div className="bookshelf">
             <h2 className="bookshelf-title">{ title }</h2>
             <div className="bookshelf-books">
-              <Books books={ books } />
+              <ol className="books-grid">
+              {books.map(({authors, imageLinks, title, shelf, id}, j) => (
+                    <Book key={j} authors={authors} id={id}imageLinks={imageLinks} title={title} shelf={shelf} updateState={updateState} />
+                  )
+                )}
+              </ol>
             </div>
           </div>
         </div>
