@@ -6,19 +6,16 @@ class Book extends Component {
 
   render() {
 
-    const title = this.props.title || 'No Title Given'
-    const shelf = this.props.shelf || 'none'
-    const authors = this.props.authors || ['No Author Given']
-    const imageLinks = this.props.imageLinks || ''
-    const book = this.props
-    const {updateState} = this.props
+    const title = this.props.book.title || 'No Title Given'
+    const shelf = this.props.book.shelf || 'none'
+    const authors = this.props.book.authors || ['No Author Given']
+    const imageLinks = this.props.book.imageLinks || ''
+    const { book } = this.props
+    const { updateState } = this.props
 
     return (
     <li>
-      {console.log('title', { title })}
-      {console.log('shelf', { shelf })}
-      {console.log('authors',{ authors })}
-      {console.log('from my reads updateMyReads from Book.js', updateState)}
+      {console.log('shelf passed to selector for ' + title + ': ', shelf)}
       <div className="book">
         <div className="book-top">
           <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${ imageLinks.thumbnail })` }}></div>
