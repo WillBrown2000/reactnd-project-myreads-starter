@@ -11,6 +11,7 @@ class BooksApp extends React.Component {
   state = {
 
     searchBooks: [],
+    userBooks: [],
     currentlyReadingBooks : [] ,
     wantToReadBooks : [] ,
     readBooks : [] ,
@@ -30,10 +31,16 @@ class BooksApp extends React.Component {
     let newBookList = []
 
     const searchBooks = this.state.searchBooks.map( book => book)
+    const userBooks = this.state.userBooks.map( book => book)
 
     console.log(searchBooks)
 
+    console.log('userBooks from state: ', userBooks)
+
     api.getAll().then( (userBooks) => {
+
+      console.log('userBooks from getAll :', userBooks)
+
 
       searchBooks.forEach( (searchBook) => {
 
