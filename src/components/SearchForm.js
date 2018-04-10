@@ -8,7 +8,7 @@ class SearchForm extends Component {
 
   render() {
 
-    const { updateState, books, query, searchHandleChange, updateSearchBooksSelector } = this.props
+    const { updateState, searchBooks, query, searchHandleChange, updateSearchBooksSelector } = this.props
 
     return (
       <div className="search-books">
@@ -22,8 +22,8 @@ class SearchForm extends Component {
             <ol className="books-grid"></ol>
             <div>
               <ol className="books-grid">
-              {(this.props.books.length > 0) ?
-                (this.props.books.map((book, j) => (
+              {(searchBooks.length > 0) ?
+                (searchBooks.map((book, j) => (
                   <Book key={j} book={book} value={query} updateSearchBooksSelector={updateSearchBooksSelector} updateState={updateState} />))):
                 (<div>"These aren't the books you're looking for.  Try a different search!"</div>)
               }

@@ -1,5 +1,5 @@
 import React from 'react'
-// import * as BooksAPI from './BooksAPI'
+// import * as sAPI from './BooksAPI'
 import './App.css'
 import SearchForm from './components/SearchForm.js'
 import { Route, BrowserRouter } from 'react-router-dom'
@@ -10,7 +10,7 @@ class BooksApp extends React.Component {
 
   state = {
 
-    books: [],
+    searchBooks: [],
     currentlyReadingBooks : [] ,
     wantToReadBooks : [] ,
     readBooks : [] ,
@@ -29,7 +29,7 @@ class BooksApp extends React.Component {
 
     let newBookList = []
 
-    const searchBooks = this.state.books.map( book => book)
+    const searchBooks = this.state.searchBooks.map( book => book)
 
     console.log(searchBooks)
 
@@ -62,7 +62,7 @@ class BooksApp extends React.Component {
       console.log('about to run set State: ', newBookList)
       this.setState({
 
-        books: newBookList
+        searchBooks: newBookList
 
       })
 
@@ -90,7 +90,7 @@ class BooksApp extends React.Component {
 
           this.setState({
 
-          books: []
+          searchBooks: []
 
           })
 
@@ -102,7 +102,7 @@ class BooksApp extends React.Component {
 
           this.setState({
 
-            books: newBookList
+            searchBooks: newBookList
 
           })
 
@@ -139,7 +139,7 @@ class BooksApp extends React.Component {
           console.log('about to run set State: ', newBookList)
           this.setState({
 
-            books: newBookList
+            searchBooks: newBookList
 
           })
 
@@ -163,7 +163,8 @@ class BooksApp extends React.Component {
           currentlyReadingBooks : _currentlyReadingBooks,
           wantToReadBooks : _wantToReadBooks,
           readBooks : _readBooks,
-          loading : false
+          loading : false,
+          userBooks: books
         })
 
         console.log('updated all shelf values')
@@ -173,11 +174,11 @@ class BooksApp extends React.Component {
 
   render() {
 
-    console.log('state.books: ', this.state.books)
+    console.log('state.searchBooks: ', this.state.searchBooks)
     return (
       <BrowserRouter>
         <div className="app">
-          <Route path='/search' render={()=> <SearchForm query={this.state.query} books={this.state.books} updateSearchBooksSelector={this.updateSearchBooksSelector} searchHandleChange={this.searchHandleChange} updateState={this.updateShelfValues}/>}/>
+          <Route path='/search' render={()=> <SearchForm query={this.state.query} searchBooks={this.state.searchBooks} updateSearchBooksSelector={this.updateSearchBooksSelector} searchHandleChange={this.searchHandleChange} updateState={this.updateShelfValues}/>}/>
           <Route exact path='/' render={()=> <MyReads userSelectedBooks={this.state} updateState={this.updateShelfValues}/>} />
         </div>
       </BrowserRouter>
