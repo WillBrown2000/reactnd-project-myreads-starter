@@ -11,7 +11,7 @@ class Book extends Component {
     const authors = this.props.book.authors || ['No Author Given']
     const imageLinks = this.props.book.imageLinks || ''
     const { book } = this.props
-    const { updateState } = this.props
+    const { updateState, updateSearchBooksSelector, query } = this.props
 
     return (
     <li>
@@ -19,7 +19,7 @@ class Book extends Component {
       <div className="book">
         <div className="book-top">
           <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${ imageLinks.thumbnail })` }}></div>
-          <Selector shelf={shelf} book={book} updateState={updateState}/>
+          <Selector shelf={shelf} book={book} query={query} updateSearchBooksSelector={updateSearchBooksSelector} updateState={updateState}/>
         </div>
           <div className="book-title">{ title }</div>
           <div className="book-authors">{ authors }</div>

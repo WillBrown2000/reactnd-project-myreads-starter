@@ -25,6 +25,51 @@ class BooksApp extends React.Component {
 
   }
 
+  updateSearchBooksSelector = () => {
+
+    let newBookList = []
+
+    const searchBooks = this.state.books.map( book => book)
+
+    console.log(searchBooks)
+
+    api.getAll().then( (userBooks) => {
+
+      searchBooks.forEach( (searchBook) => {
+
+        let bookToAdd = {}
+
+        userBooks.forEach( (userBook) => {
+
+          if (userBook['id'] === searchBook['id']) {
+
+            bookToAdd = Object.assign({}, userBook)
+
+            }
+
+        })
+
+            if (bookToAdd.id === undefined) {
+
+            bookToAdd = Object.assign(searchBook, {'shelf':'none'})
+
+            }
+
+            newBookList.push(bookToAdd)
+
+      })
+
+      console.log('about to run set State: ', newBookList)
+      this.setState({
+
+        books: newBookList
+
+      })
+
+    })
+
+  }
+
   searchHandleChange = (event) => {
 
       let _query = event.target.value
@@ -104,7 +149,8 @@ class BooksApp extends React.Component {
 
   }
 
-  updateShelfValues = () => {
+  updateShelfValues = (apiResults) => {
+
 
     api.getAll().then(
       (books) => {
@@ -131,7 +177,7 @@ class BooksApp extends React.Component {
     return (
       <BrowserRouter>
         <div className="app">
-          <Route path='/search' render={()=> <SearchForm query={this.state.query} books={this.state.books} searchHandleChange={this.searchHandleChange} updateState={this.updateShelfValues}/>}/>
+          <Route path='/search' render={()=> <SearchForm query={this.state.query} books={this.state.books} updateSearchBooksSelector={this.updateSearchBooksSelector} searchHandleChange={this.searchHandleChange} updateState={this.updateShelfValues}/>}/>
           <Route exact path='/' render={()=> <MyReads userSelectedBooks={this.state} updateState={this.updateShelfValues}/>} />
         </div>
       </BrowserRouter>

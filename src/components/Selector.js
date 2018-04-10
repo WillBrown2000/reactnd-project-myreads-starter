@@ -10,7 +10,9 @@ class Selector extends Component {
 
       // there's not a need to update the SearchForm state, hence this conditionally checks to see if
       // the updateState() method is present from MyReads.js, which does need to re-render
-      this.props.updateState()
+      if (this.props.updateSearchBooksSelector) {this.props.updateSearchBooksSelector()}
+        else {this.props.updateState()}
+
 
       console.log('results from api: ', results)
 
