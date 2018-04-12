@@ -18,3 +18,7 @@ In the directory you installed run the following commands:
 
 `npm install`
 `npm start`
+
+## Searching
+
+The search functionality supports a limited number of key/words and ability to search by author/title in some cases.  Not all searches are supported by the Udacity API.
