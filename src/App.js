@@ -60,6 +60,7 @@ class BooksApp extends React.Component {
       this.setState({
         searchBooks: newBookList,
         userBooks: newUserBooks
+
       })
 
     })
@@ -177,12 +178,12 @@ class BooksApp extends React.Component {
   }
 
   render() {
-
+  console.log('re-rendered app.js')
     return (
       <BrowserRouter>
         <div className="app">
-          <Route path='/search' render={()=> <SearchForm query={this.state.query} searchBooks={this.state.searchBooks} updateSearchBooksSelector={this.updateSearchBooksSelector} searchHandleChange={this.searchHandleChange} updateState={this.updateShelfValues} refreshPage={this.refreshPage}/>}/>
-          <Route exact path='/' render={()=> <MyReads userSelectedBooks={this.state} updateState={this.updateShelfValues}/>} />
+          <Route path='/search' render={()=> <SearchForm query={this.state.query} searchBooks={this.state.searchBooks} updateSearchBooksSelector={this.updateSearchBooksSelector} searchHandleChange={this.searchHandleChange} updateState={this.updateShelfValues} />}/>
+          <Route exact path='/' render={()=> <MyReads userSelectedBooks={this.state} searchBooks={this.state.searchBooks} updateFromSearchPage={this.updateSearchBooksSelector} updateState={this.updateShelfValues}/>} />
         </div>
       </BrowserRouter>
     )

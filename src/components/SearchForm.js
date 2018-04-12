@@ -8,12 +8,12 @@ class SearchForm extends Component {
 
   render() {
 
-    const { updateState, searchBooks, query, searchHandleChange, refreshPage, updateSearchBooksSelector } = this.props
+    const { updateState, searchBooks, query, searchHandleChange, updateSearchBooksSelector } = this.props
 
     return (
       <div className="search-books">
           <div className="search-books-bar">
-            <Link className="close-search" to='/'>Close</Link>
+            <Link className="close-search" onClick={()=> updateState()} to='/'>Close</Link>
             <div className="search-books-input-wrapper">
               <input type="text" placeholder="Search by title or author" value={query} onChange={searchHandleChange}/>
             </div>
@@ -25,7 +25,7 @@ class SearchForm extends Component {
               {(searchBooks.length > 0) ?
                 (searchBooks.map((book, j) => (
                   <Book key={j} book={book} value={query} updateSearchBooksSelector={updateSearchBooksSelector} updateState={updateState} />))):
-                (<div>"These aren't the books you're looking for.  Try a different search!"</div>)
+                (<div>These aren't the books you're looking for.  Try a different search!</div>)
               }
               </ol>
             </div>
