@@ -36,8 +36,6 @@ class Selector extends Component {
       },
     ]
 
-    console.log('just re-rendered selector')
-
     return (
       <div className="book-shelf-changer">
         <select value={this.props.book.shelf} onChange={(event)=>{this.handleChange(event)}}>
