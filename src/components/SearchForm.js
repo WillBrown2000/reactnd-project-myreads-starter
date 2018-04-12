@@ -8,7 +8,7 @@ class SearchForm extends Component {
 
   render() {
 
-    const { updateState, searchBooks, query, searchHandleChange, updateSearchBooksSelector } = this.props
+    const { updateState, searchBooks, query, searchHandleChange, refreshPage, updateSearchBooksSelector } = this.props
 
     return (
       <div className="search-books">

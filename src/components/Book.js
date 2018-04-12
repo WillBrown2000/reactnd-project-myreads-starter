@@ -15,7 +15,6 @@ class Book extends Component {
 
     return (
     <li>
-      {console.log('shelf passed to selector for ' + title + ': ', shelf)}
       <div className="book">
         <div className="book-top">
           <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${ imageLinks.thumbnail })` }}></div>

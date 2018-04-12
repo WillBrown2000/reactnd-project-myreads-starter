@@ -36,12 +36,12 @@ class Selector extends Component {
       },
     ]
 
-    console.log('current shelf state of ' + this.props.book.title + ' is: ', this.props.book.shelf)
+    console.log('just re-rendered selector')
 
     return (
       <div className="book-shelf-changer">
-        <select value={this.props.book.shelf} onChange={this.handleChange}>
-          <option value="none" disabled>Move to...</option>
+        <select value={this.props.book.shelf} onChange={(event)=>{this.handleChange(event)}}>
+          <option value="na" disabled>Move to...</option>
           {bookLocations.map(({shelfValue, text}, j) =>
             (
               <option key={j} value={shelfValue}>{text}</option>

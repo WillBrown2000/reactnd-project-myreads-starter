@@ -18,7 +18,7 @@ class MyReads extends Component {
         </div>
             <Shelf books={ this.props.userSelectedBooks.currentlyReadingBooks } title="Currently Reading" updateState={this.props.updateState} />
             <Shelf books={ this.props.userSelectedBooks.wantToReadBooks } title="Want To Read" updateState={this.props.updateState} />
-            <Shelf books={ this.props.userSelectedBooks.readBooks } title="Read" updateState={this.props.updateState} />    
+            <Shelf books={ this.props.userSelectedBooks.readBooks } title="Read" updateState={this.props.updateState} />
         <div className="open-search">
           <Link to={{
                   pathname:'/search',
