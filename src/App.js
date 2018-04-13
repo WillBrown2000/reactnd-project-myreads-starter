@@ -68,10 +68,7 @@ class BooksApp extends React.Component {
   }
 
   searchHandleChange = (event) => {
-
       let _query = event.target.value
-
-      console.log('_query',_query)
 
       this.setState({
         query: _query || ''
@@ -159,8 +156,16 @@ class BooksApp extends React.Component {
     api.getAll().then(
       (books) => {
 
+        let _currentlyReadingBooks = books.filter( (book) =>  book.shelf === 'currentlyReading' )
+        let _wantToReadBooks = books.filter( (book) =>  book.shelf === 'wantToRead' )
+        let _readBooks = books.filter( (book) =>  book.shelf === 'read' )
+
         this.setState({
 
+          currentlyReadingBooks : _currentlyReadingBooks,
+          wantToReadBooks : _wantToReadBooks,
+          readBooks : _readBooks,
+          loading : false,
           userBooks: books
 
         })
@@ -178,7 +183,7 @@ class BooksApp extends React.Component {
       <BrowserRouter>
         <div className="app">
           <Route path='/search' render={()=> <SearchForm query={this.state.query} searchBooks={this.state.searchBooks} updateSearchBooksSelector={this.updateSearchBooksSelector} searchHandleChange={this.searchHandleChange} updateState={this.updateShelfValues} />}/>
-          <Route exact path='/' render={()=> <MyReads state={this.state} searchBooks={this.state.searchBooks} updateFromSearchPage={this.updateSearchBooksSelector} updateState={this.updateShelfValues}/>} />
+          <Route exact path='/' render={()=> <MyReads userSelectedBooks={this.state} searchBooks={this.state.searchBooks} updateFromSearchPage={this.updateSearchBooksSelector} updateState={this.updateShelfValues}/>} />
         </div>
       </BrowserRouter>
     )
