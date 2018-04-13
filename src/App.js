@@ -70,22 +70,24 @@ class BooksApp extends React.Component {
   searchHandleChange = (event) => {
       let _query = event.target.value
 
+      console.log('_query',_query)
+
       this.setState({
         query: _query || ''
       })
 
+      if (_query === '') {
+        console.log('set books to []')
+        this.setState({
+        searchBooks: []
+        })
+
+        return false
+      }
+
       api.search(_query).then( (searchBooks) => {
 
         let newBookList = []
-
-        if (_query === '') {
-          console.log('set books to []')
-          this.setState({
-          searchBooks: []
-          })
-
-          return false
-        }
 
         if (searchBooks.error) {
           this.setState({
